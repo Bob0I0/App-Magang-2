@@ -22,20 +22,16 @@
 
                     <flux:sidebar.search searchable placeholder="Search..." />
                     
-                    <flux:sidebar.nav>
-                        <flux:sidebar.item icon="home" href="#" current>Home</flux:sidebar.item>
-                        <flux:sidebar.item icon="inbox" badge="12" href="#">Inbox</flux:sidebar.item>
-                        <flux:sidebar.item icon="document-text" href="#">Documents</flux:sidebar.item>
-                        <flux:sidebar.item icon="calendar" href="#">Calendar</flux:sidebar.item>
-                        <flux:sidebar.group expandable heading="Favorites" class="grid">
-                            <flux:sidebar.item href="#">Marketing site</flux:sidebar.item>
-                            <flux:sidebar.item href="#">Android app</flux:sidebar.item>
-                            <flux:sidebar.item href="#">Brand guidelines</flux:sidebar.item>
-                        </flux:sidebar.group>
-                    </flux:sidebar.nav>
+                    <flux:navlist variant="outline">
+                        <flux:navlist.item href="{{ route('dashboard') }}" current>Dashboard</flux:navlist.item>
+                        <flux:navlist.item href="#" icon="puzzle-piece">Features</flux:navlist.item>
+                        <flux:navlist.item href="#" icon="currency-dollar">Pricing</flux:navlist.item>
+                        <flux:navlist.item href="#" icon="user">About</flux:navlist.item>
+                    </flux:navlist>
 
                     <flux:spacer />
 
+                    <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" />
 
                     <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
                 </flux:sidebar>
