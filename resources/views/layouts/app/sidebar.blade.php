@@ -23,10 +23,10 @@
                     <flux:sidebar.search searchable placeholder="Search..." />
                     
                     <flux:navlist variant="outline">
-                        <flux:navlist.item href="{{ route('dashboard') }}" current>Dashboard</flux:navlist.item>
-                        <flux:navlist.item href="#" icon="puzzle-piece">Features</flux:navlist.item>
+                        <flux:navlist.item href="{{ route('dashboard') }}">Dashboard</flux:navlist.item>
                         <flux:navlist.item href="#" icon="currency-dollar">Pricing</flux:navlist.item>
                         <flux:navlist.item href="#" icon="user">About</flux:navlist.item>
+                        <flux:navlist.item href="{{ route('pengguna') }}">Kelola Pengguna</flux:navlist.item>
                     </flux:navlist>
 
                     <flux:spacer />

@@ -23,6 +23,13 @@
     --color-zinc-900: var(--color-slate-900);
     --color-zinc-950: var(--color-slate-950);
 
+    --color-nightfall-900: #020203;
+    --color-nightfall-800: #1a191c;
+    --color-nightfall-500: #39373d;
+    --color-nightfall-400: #c7bc92;
+    --color-nightfall-300: #cad2fd;
+    --color-nightfall-100: #a8c4ec;
+    
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-blue-700);
     --color-accent-foreground: var(--color-white);
