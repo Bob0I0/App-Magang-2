@@ -21,13 +21,13 @@
 
             <!-- Email Address -->
             <flux:input
-                name="email"
-                :label="__('Email address')"
-                :value="old('email')"
-                type="email"
+                wire:model="username"
+                :label="__('Username')"
+                type="text"
                 required
-                autocomplete="email"
-                placeholder="email@example.com"
+                autofocus
+                placeholder="Username"
+                class="rounded-lg "
             />
 
             <!-- Password -->

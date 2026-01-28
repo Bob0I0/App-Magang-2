@@ -13,7 +13,7 @@ new class extends Component {
     use ProfileValidationRules;
 
     public string $name = '';
-    public string $email = '';
+    public string $username = '';
 
     /**
      * Mount the component.
@@ -21,7 +21,7 @@ new class extends Component {
     public function mount(): void
     {
         $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
+        $this->username = Auth::user()->username;
     }
 
     /**
@@ -35,8 +35,8 @@ new class extends Component {
 
         $user->fill($validated);
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
+        if ($user->isDirty('username')) {
+            $user->username = $user->username;
         }
 
         $user->save();
@@ -47,33 +47,33 @@ new class extends Component {
     /**
      * Send an email verification notification to the current user.
      */
-    public function resendVerificationNotification(): void
-    {
-        $user = Auth::user();
+    // public function resendVerificationNotification(): void
+    // {
+    //     $user = Auth::user();
 
-        if ($user->hasVerifiedEmail()) {
-            $this->redirectIntended(default: route('dashboard', absolute: false));
+    //     if ($user->hasVerifiedEmail()) {
+    //         $this->redirectIntended(default: route('dashboard', absolute: false));
 
-            return;
-        }
+    //         return;
+    //     }
 
-        $user->sendEmailVerificationNotification();
+    //     $user->sendEmailVerificationNotification();
 
-        Session::flash('status', 'verification-link-sent');
-    }
+    //     Session::flash('status', 'verification-link-sent');
+    // }
 
-    #[Computed]
-    public function hasUnverifiedEmail(): bool
-    {
-        return Auth::user() instanceof MustVerifyEmail && ! Auth::user()->hasVerifiedEmail();
-    }
+    // #[Computed]
+    // public function hasUnverifiedEmail(): bool
+    // {
+    //     return Auth::user() instanceof MustVerifyEmail && ! Auth::user()->hasVerifiedEmail();
+    // }
 
-    #[Computed]
-    public function showDeleteUser(): bool
-    {
-        return ! Auth::user() instanceof MustVerifyEmail
-            || (Auth::user() instanceof MustVerifyEmail && Auth::user()->hasVerifiedEmail());
-    }
+    // #[Computed]
+    // public function showDeleteUser(): bool
+    // {
+    //     return ! Auth::user() instanceof MustVerifyEmail
+    //         || (Auth::user() instanceof MustVerifyEmail && Auth::user()->hasVerifiedEmail());
+    // }
 }; ?>
 
 <section class="w-full">
@@ -86,25 +86,7 @@ new class extends Component {
             <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
 
             <div>
-                <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" />
-
-                @if ($this->hasUnverifiedEmail)
-                    <div>
-                        <flux:text class="mt-4">
-                            {{ __('Your email address is unverified.') }}
-
-                            <flux:link class="text-sm cursor-pointer" wire:click.prevent="resendVerificationNotification">
-                                {{ __('Click here to re-send the verification email.') }}
-                            </flux:link>
-                        </flux:text>
-
-                        @if (session('status') === 'verification-link-sent')
-                            <flux:text class="mt-2 font-medium !dark:text-green-400 !text-green-600">
-                                {{ __('A new verification link has been sent to your email address.') }}
-                            </flux:text>
-                        @endif
-                    </div>
-                @endif
+                <flux:input wire:model="username" :label="__('Username')" type="text" required autocomplete="username" />
             </div>
 
             <div class="flex items-center gap-4">
@@ -120,8 +102,8 @@ new class extends Component {
             </div>
         </form>
 
-        @if ($this->showDeleteUser)
-            <livewire:pages::settings.delete-user-form />
-        @endif
+        {{-- @if ($this->showDeleteUser) --}}
+        <livewire:pages::settings.delete-user-form />
+        {{-- @endif --}}
     </x-pages::settings.layout>
 </section>
