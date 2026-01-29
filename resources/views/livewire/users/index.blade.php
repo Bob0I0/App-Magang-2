@@ -1,4 +1,4 @@
-<div class="flex-1 flex flex-col">
+<div class="h-full flex flex-col">
     <x-app-header :title="__('Kelola Pengguna')" />
     <!-- Search Bar -->
     <div class="border-l-[3px] border-nightfall-800 dark:border-slate-300 px-2.5 mt-1 mb-4 flex flex-row gap-2 items-center">
@@ -10,7 +10,16 @@
             <input type="search" class="w-full border border-neutral-300 rounded-xl bg-white px-2 py-1.5 pl-9 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-slate-950/50 dark:focus-visible:outline-white" name="search" aria-label="Search" placeholder="Cari Berdasarkan Jenis Surat"/>
         </div>
     </div>
-    <div class="flex-1 flex flex-col shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-6 py-4">        {{-- <livewire:users.create/> --}}
+    <div class="flex-1 shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-6 py-4">
+        <div x-data="{modalIsOpen: false}" class="pb-2">
+            <button x-on:click="modalIsOpen = true" type="button" class="whitespace-nowrap rounded-sm bg-black border border-black dark:border-white px-4 py-2 text-center text-sm font-medium tracking-wide text-neutral-100 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white">Open Modal</button>
+            <div x-cloak x-show="modalIsOpen" x-transition.opacity.duration.200ms x-trap.inert.noscroll="modalIsOpen" x-on:keydown.esc.window="modalIsOpen = false" x-on:click.self="modalIsOpen = false" class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 pb-8 backdrop-blur-md sm:items-center lg:p-8" role="dialog" aria-modal="true" aria-labelledby="defaultModalTitle">
+                <!-- Modal Dialog -->
+                <div x-show="modalIsOpen" x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" x-transition:enter-start="opacity-0 scale-50" x-transition:enter-end="opacity-100 scale-100" class="flex max-w-lg flex-col gap-4 overflow-hidden rounded-sm border border-neutral-300 bg-white text-neutral-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+                    <livewire:users.create />
+                </div>
+            </div>
+        </div>
         <table class="table-fixed max-w-9/10 border border-slate-300 dark:border-slate-600 text-sm ">
             <thead class="bg-nightfall-800 text-white text-left">
                 <tr class="text-zinc-50">

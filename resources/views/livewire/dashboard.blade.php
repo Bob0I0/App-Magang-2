@@ -1,4 +1,4 @@
-<div>
+<div class="h-full flex flex-col">
     <x-app-header :title="__('Overview Arsip Surat')" />
     
     <!-- Filter Tahun - di luar container kartu -->
@@ -74,7 +74,7 @@
         </script>
     </div>
     <!-- Container Kartu - transparan, tanpa background -->
-    <div class="flex-1 flex flex-col shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-4 lg:px-16 py-8">
+    <div class="flex-1 shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-4 lg:px-16 py-8">
         <!-- Grid Kartu 4x2 -->
         <div class="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-6 content-center">
             <!-- Kartu Surat Keputusan -->

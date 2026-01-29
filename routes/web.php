@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Dashboard;
+use App\Livewire\Surat\Modul;
 use App\Livewire\Users\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,8 @@ Route::view('dashboard', 'dashboard')
 Route::middleware('auth')->group(function () {
     
     Route::get("dashboard",Dashboard::class)->name("dashboard");
+
+    Route::get("modul",Modul::class)->name("modul");
 
     Route::get("users",Index::class)->name("pengguna");
 
