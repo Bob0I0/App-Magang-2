@@ -12,81 +12,207 @@
                     Pilihan: <strong x-text="selected"></strong>
                 </span>
 
-                <button
-                    type="button"
-                    class="px-4 py-2 bg-blue-600 text-white rounded"
-                >
-                    Konfirmasi
-                </button>
+                <flux:button
+                    type="button" variant="ghost"
+                    class="px-4 py-2 text-lime-400! rounded"
+                    icon:trailing="bolt"                
+                    >
+                    Konfirmasi 
+                </flux:button>
             </div>
         </x-slot:actions>
     </x-app-header>    
-    
+
     <!-- Container Kartu - transparan, tanpa background -->
     <div class="flex-1 shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-4 lg:px-16 py-8">
 
-            <!-- PILIHAN -->
-            <div class="flex gap-4">
-                <button
-                    type="button"
-                    @click="selected = selected === 'user' ? null : 'user'"
-                    :class="selected === 'user' && 'ring-2 ring-blue-500'"
-                    class="px-4 py-3 border rounded"
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- CARD BUTTON -->
+            <button
+                type="button"
+                @click="selected = selected === 'surat_keputusan' ? null : 'surat_keputusan'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_keputusan' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
                 >
-                    User
-                </button>
-
-                <button
-                    type="button"
-                    @click="selected = selected === 'admin' ? null : 'admin'"
-                    :class="selected === 'admin' && 'ring-2 ring-blue-500'"
-                    class="px-4 py-3 border rounded"
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat Keputusan
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
+            
+            <button
+                type="button"
+                @click="selected = selected === 'surat_perintah' ? null : 'surat_perintah'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_perintah' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
                 >
-                    Admin
-                </button>
-            </div>
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat Perintah
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
             
-            <!-- Kartu Surat Perintah -->
-            <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
-                <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">Surat Perintah</h1>
-                <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">3</p>
-            </div>
+            <button
+                type="button"
+                @click="selected = selected === 'surat_edaran' ? null : 'surat_edaran'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_edaran' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
+                >
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat Edaran
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
             
-            <!-- Kartu Surat Edaran -->
-            <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
-                <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">Surat Edaran</h1>
-                <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">3</p>
-            </div>
+            <button
+                type="button"
+                @click="selected = selected === 'surat_pengumuman' ? null : 'surat_pengumuman'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_pengumuman' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
+                >
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat Pengumuman
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
             
-            <!-- Kartu Surat Pengumuman -->
-            <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
-                <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">Surat Pengumuman</h1>
-                <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">3</p>
-            </div>
+            <button
+                type="button"
+                @click="selected = selected === 'surat_P3S' ? null : 'surat_P3S'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_P3S' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
+                >
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat P3S
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
+            
+            <button
+                type="button"
+                @click="selected = selected === 'surat_penugasan' ? null : 'surat_penugasan'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_penugasan' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
+                >
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat Penugasan
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
+            
+            <button
+                type="button"
+                @click="selected = selected === 'surat_keterangan' ? null : 'surat_keterangan'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_keterangan' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
+                >
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat Keterangan
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
+            
+            <button
+                type="button"
+                @click="selected = selected === 'surat_perjanjian' ? null : 'surat_perjanjian'"
+                class="text-left focus:outline-none">
+                <div
+                    :class="selected === 'surat_perjanjian' && 'ring-2 ring-blue-500'"
+                    class="w-full min-h-30
+                        rounded-lg border border-slate-300 dark:border-slate-600
+                        bg-white dark:bg-nightfall-900
+                        flex flex-col items-center justify-center
+                        py-4 px-3
+                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
+                        transition-shadow"
+                >
+                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        Surat Perjanjian
+                    </h1>
+                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
+                        3
+                    </p>
+                </div>
+            </button>
 
-            <!-- Kartu Surat P3S -->
-            <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
-                <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">Surat P3S</h1>
-                <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">3</p>
-            </div>
-
-            <!-- Kartu Surat Penugasan -->
-            <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
-                <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">Surat Penugasan</h1>
-                <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">3</p>
-            </div>
-
-            <!-- Kartu Surat Keterangan -->
-            <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
-                <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">Surat Keterangan</h1>
-                <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">3</p>
-            </div>
-
-            <!-- Kartu Surat Perjanjian -->
-            <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
-                <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">Surat Perjanjian</h1>
-                <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">3</p>
-            </div>
         </div>
         
         <!-- Pagination Dots -->

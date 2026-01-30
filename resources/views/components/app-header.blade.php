@@ -9,7 +9,7 @@
         <div></div>
 
         <!-- Kolom 2 (Title - CENTER ASLI) -->
-        <div class="flex flex-col items-center text-center w-fit mx-auto">
+        <div class="flex flex-col items-center text-center w-fit mx-auto pb-4">
             <h2 class="font-semibold text-xl lg:text-2xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ $title }}
             </h2>
