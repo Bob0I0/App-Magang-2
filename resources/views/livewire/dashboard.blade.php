@@ -1,6 +1,7 @@
 <div class="h-full flex flex-col">
-    <x-app-header :title="__('Overview Arsip Surat')" />
-    
+
+    <!-- HEADER -->
+    <x-app-header :title="__('Overview Arsip Surat')"/>    
     <!-- Filter Tahun - di luar container kartu -->
     <div class="border-l-[3px] border-nightfall-800 dark:border-slate-300 px-2.5 mb-4">
         <div x-data="combobox({
@@ -75,7 +76,7 @@
     </div>
     <!-- Container Kartu - transparan, tanpa background -->
     <div class="flex-1 shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-4 lg:px-16 py-8">
-        <!-- Grid Kartu 4x2 -->
+
         <div class="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-6 content-center">
             <!-- Kartu Surat Keputusan -->
             <div class="rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-nightfall-900 flex flex-col items-center justify-center py-6 px-3 shadow-sm hover:shadow-md hover:shadow-blue-500/30 transition-shadow">    
