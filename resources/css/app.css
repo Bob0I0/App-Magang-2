@@ -28,6 +28,7 @@
     --color-nightfall-500: #39373d;
     --color-nightfall-400: #c7bc92;
     --color-nightfall-300: #cad2fd;
+    --color-nightfall-200: #6c6e79;
     --color-nightfall-100: #a8c4ec;
     
     --color-accent: var(--color-neutral-800);
@@ -38,7 +39,7 @@
 @layer theme {
     .dark {
         --color-accent: var(--color-white);
-        --color-accent-content: var(--color-indigo-800);
+        --color-accent-content: var(--color-blue-700);
         --color-accent-foreground: var(--color-neutral-800);
     }
 }

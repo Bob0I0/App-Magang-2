@@ -14,10 +14,10 @@
 
                 <flux:button
                     type="button" variant="ghost"
-                    class="px-4 py-2 text-lime-400! rounded"
-                    icon:trailing="bolt"                
+                    class="px-4 py-2 text-lime-500! rounded"
+                    {{-- icon:trailing="arrow-right"--}}
                     >
-                    Konfirmasi 
+                    Konfirmasi <flux:icon.arrow-right variant="mini" class="text-slate-900 dark:text-slate-200"/>
                 </flux:button>
             </div>
         </x-slot:actions>
