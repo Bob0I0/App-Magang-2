@@ -22,17 +22,17 @@ $square ??= $slot->isEmpty();
 $iconClasses = Flux::classes($square ? 'size-5!' : 'size-4!');
 
 $classes = Flux::classes()
-    ->add('h-10 lg:h-8 relative flex items-center gap-3 rounded-lg')
+    ->add('h-10 lg:h-15 relative flex items-center')
     ->add($square ? 'px-2.5!' : '')
-    ->add('py-0 text-start w-full px-3 my-px')
+    ->add('py-0 text-start w-full px-4 my-0')
     ->add('text-zinc-500 dark:text-white/80')
     ->add(match ($variant) {
         'outline' => match ($accent) {
             true => [
                 'data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content)',
-                'data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent',
+                'data-current:bg-white/10 dark:data-current:bg-white/[4%] data-current:border-l-4 data-current:border-blue-700 dark:data-current:border-l-4',
                 'hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 ',
-                'border border-transparent',
+                'border-l-3 dark:border-l-3',
             ],
             false => [
                 'data-current:text-zinc-800 dark:data-current:text-zinc-100 data-current:border-zinc-200',
@@ -74,7 +74,7 @@ $classes = Flux::classes()
     <?php endif; ?>
 
     <?php if ($slot->isNotEmpty()): ?>
-        <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&]:hidden [[data-nav-sidebar]_[data-nav-footer]_&]:block" data-content>{{ $slot }}</div>
+        <div class="flex-1 text-base font-medium leading-none whitespace-nowrap [[data-nav-footer]_&]:hidden [[data-nav-sidebar]_[data-nav-footer]_&]:block" data-content>{{ $slot }}</div>
     <?php endif; ?>
 
     <?php if (is_string($iconTrailing) && $iconTrailing !== ''): ?>
