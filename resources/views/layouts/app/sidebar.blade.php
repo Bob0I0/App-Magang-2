@@ -21,7 +21,7 @@
                 <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-nightfall-900 h-full z-10">
                     
                     <flux:navlist variant="outline">
-                        <flux:navlist.item href="{{ route('dashboard') }}">Dashboard</flux:navlist.item>
+                        <flux:navlist.item href="{{ route('dashboard') }}">Beranda</flux:navlist.item>
                         <flux:navlist.item href="{{ route('modul') }}">Surat</flux:navlist.item>
                         <flux:navlist.item href="{{ route('pengguna') }}">Kelola Pengguna</flux:navlist.item>
                     </flux:navlist>

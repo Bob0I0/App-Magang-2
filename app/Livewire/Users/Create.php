@@ -17,15 +17,11 @@ class Create extends Component
     #[Validate('unique:users,username', message: 'Username Sudah Dipakai')]
     public $username;
 
+    #[Validate('required', message: 'Wajib di Isi')]
+    #[Validate('min:8', message: 'Wajib di Isi')]
     public $password;
-    public $password_confirmation;
 
-    public function rules(): array
-    {
-        return [
-            'password' => ['required', 'confirmed', Password::defaults()],
-        ];
-    }
+    public $password_confirmation;
 
     public function messages(): array
     {
@@ -42,20 +38,19 @@ class Create extends Component
 
     public function createuser()
     {
-        // $this->validate([
-        //     'name' => 'required|string|max:255',
-        //     'username' => 'required|string|max:255|unique:users,username',
-        //     'roles' => 'required',
-        //     'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        // ]);
-        $this->validate();
+        $this->validate(['password' => ['confirmed', Password::defaults()],
+        ]);
 
-        $user = User::create([
+        User::create([
             'name' => $this->name,
             'username' => $this->username,
             'password' => Hash::make($this->password)
         ]);
-        
+
+        $this->reset();
+        $this->resetValidation();
+        $this->dispatch('user-created');
+        session()->flash('success', 'User Berhasil Ditambahkan');
         // $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
     }
 
