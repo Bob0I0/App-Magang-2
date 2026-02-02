@@ -117,7 +117,7 @@
             </form>                
         </div>
     </div>
-@if (session('status'))
+@if (session()->has('success'))
     <div
         class="relative w-full overflow-hidden rounded-sm border border-green-500 bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark"
         role="alert"

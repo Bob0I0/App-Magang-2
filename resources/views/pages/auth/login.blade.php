@@ -1,7 +1,7 @@
 <x-layouts::auth>
     <div class="flex flex-col">
         {{-- <img src="{{ asset('images/Pertamina Logo.png') }}" alt="Logo" class="mx-auto mb-4 rounded-xl"> --}}
-        <img src="{{ asset('images/Login-Hitam.png') }}" class="m-12 rounded-xl block dark:hidden">
+        <img src="{{ asset('images/Login-Hitam.png') }}" class="m-12 block dark:hidden">
         <img src="{{ asset('images/Login-Putih.png') }}" class="m-12 hidden dark:block">
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
