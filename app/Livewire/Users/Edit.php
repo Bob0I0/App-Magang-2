@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
-use Livewire\Attributes\Validate;
+
 class Edit extends Component
 {
     public $userId, $user, $name, $username, $password, $password_confirmation;
@@ -32,8 +32,7 @@ class Edit extends Component
                 'max:255',
                 Rule::unique('users', 'username')->ignore($this->userId),
             ],
-            // 'roles' => ['required', 'array'],
-            // 'password' => ['nullable', 'string', 'confirmed', Rules\Password::defaults()],
+            'password' => ['nullable', 'string', 'confirmed', Password::defaults()],
         ]);
 
         $this->user->name = $this->name;
@@ -44,15 +43,12 @@ class Edit extends Component
         }
         
         $this->user->save();
-
-        // $this->user->syncRoles($this->roles);
-
-        // Flash::success("User Berhasil diedit");
-        // $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
+        $this->dispatch('user-updated', 'user-updated');
     }
 
     public function resetForm()
     {
+        // Reset to original values from database
         $this->name = $this->user->name;
         $this->username = $this->user->username;
         $this->password = null;

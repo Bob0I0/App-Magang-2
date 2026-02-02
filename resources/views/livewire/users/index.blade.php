@@ -21,19 +21,23 @@
     </div>
 
     <div class="flex-1 shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-6 py-4">
+        
+        <!-- Create Button -->
         <div x-data="{modalIsOpen: false}" class="pb-2">
-            <button x-on:click="modalIsOpen = true" type="button" class="whitespace-nowrap rounded-lg bg-blue-700/90 px-8 py-2 text-center text-sm font-normal tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white">
+            <button x-on:click="modalIsOpen = true" type="button" class="whitespace-nowrap rounded-lg bg-blue-700/90 px-8 py-2 text-center text-sm font-normal tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-blue-900/80 dark:text-slate-100 dark:focus-visible:outline-white">
             Tambah Data
             </button>
             <livewire:users.create />
         </div>
-        <table class="table-fixed max-w-9/10 border border-slate-300 dark:border-slate-600 text-sm ">
-            <thead class="bg-nightfall-800 text-white text-left">
+        
+        <!-- Table -->
+        <table class="table-fixed max-w-9/10 border border-slate-300 dark:border-slate-800 text-sm ">
+            <thead class="bg-nightfall-800 dark:bg-blue-950/80 text-white text-left">
                 <tr class="text-zinc-50">
                     <th class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-12">No</th>
                     <th class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-80">Nama Lengkap</th>
                     <th class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-80">Username</th>
-                    <th class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-28 text-center">Aksi</th>
+                    <th class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-30 text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,12 +46,24 @@
                     <td class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-12 text-center">{{ $loop->iteration }}</td>
                     <td class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-80">{{ $user->name }}</td>
                     <td class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-80">{{ $user->username }}</td>
-                    <td class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-30 text-center">
-                        <flux:button.group>
+                    <td class="border border-slate-300 dark:border-slate-600 px-3 py-1 w-30">
+                        <flux:button.group class="justify-center gap-4">
+                        @if(auth()->id() !== $user->id)
                             <livewire:users.edit 
-                                :user-id="$user->id" 
-                                :key="'edit-form-'.$user->id"  />
-                            <flux:icon.trash />
+                                :user-id="$user->id"
+                                :key="'edit-form-'.$user->id"
+                            />
+
+                            <livewire:users.delete
+                                :user-id="$user->id"
+                                :name="$user->name"
+                                :key="'delete-'.$user->id"
+                            />
+                        @else
+                            <span class="text-xs text-slate-400 italic">
+                                Akun aktif
+                            </span>
+                        @endif
                         </flux:button.group>
                     </td>
                 </tr>
@@ -67,4 +83,5 @@
             {{ $users->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
+    @include('components.flash-message')
 </div>

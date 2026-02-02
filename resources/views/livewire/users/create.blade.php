@@ -117,30 +117,4 @@
             </form>                
         </div>
     </div>
-@if (session()->has('success'))
-    <div
-        class="relative w-full overflow-hidden rounded-sm border border-green-500 bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark"
-        role="alert"
-    >
-        <div class="flex w-full items-center gap-2 bg-success/10 p-4">
-            <div class="rounded-full bg-green-500/15 p-1 text-green-500" aria-hidden="true">
-                <flux:icon.succesful />
-            </div>
-
-            <div class="ml-2">
-                <h3 class="text-sm font-medium text-success">
-                    {{ session('success') }}
-                </h3>
-            </div>
-
-            <button
-                class="ml-auto"
-                aria-label="dismiss alert"
-                @click="show = false"
-            >
-                <flux:icon.x-mark />
-            </button>
-        </div>
-    </div>
-@endif
 </div>

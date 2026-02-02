@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
+use App\Helpers\Flash;
 
 class Index extends Component
 {
@@ -31,11 +32,20 @@ class Index extends Component
     }
 
     #[On('user-created')]
-    public function refreshIndex()
+    #[On('user-updated')]
+    #[On('user-deleted')]
+    public function refreshIndex(string $event)
     {
         $this->resetPage();
-    }
 
+        match ($event) {
+            'user-created' => Flash::success('User berhasil ditambahkan'),
+            'user-updated' => Flash::success('User berhasil diubah'),
+            'user-deleted' => Flash::success('User berhasil dihapus'),
+            default => null,
+        };
+    }
+    
     public function render()
     {
         return view('livewire.users.index', [

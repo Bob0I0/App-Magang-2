@@ -49,9 +49,7 @@ class Create extends Component
 
         $this->reset();
         $this->resetValidation();
-        $this->dispatch('user-created');
-        session()->flash('success', 'User Berhasil Ditambahkan');
-        // $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
+        $this->dispatch('user-created', 'user-created');
     }
 
 

@@ -5,7 +5,7 @@
     </head>
     <body class="bg-[url('/public/images/Login.jpg')] bg-cover bg-no-repeat bg-center md:bg-cover bg-[#FDFDFC] dark:bg-zinc-950 text-[#1b1b18]">
         
-        <div x-data="{ mode: 'form' }" x-bind:class="mode === 'button' ? 'p-6 lg:p-8 place-content-center lg:justify-center min-h-screen' : 'lg:justify-center min-h-screen'">
+        <div x-data="{ mode: 'button' }" x-bind:class="mode === 'button' ? 'p-6 lg:p-8 place-content-center lg:justify-center min-h-screen' : 'lg:justify-center min-h-screen'">
 
             <!-- BUTTON -->
             <div x-show="mode === 'button'" class="place-content-center">
@@ -20,7 +20,6 @@
                 </div>
             </div>
             
-
             <!-- CARD FORM -->
             <div x-show="mode === 'form'" >
                 
