@@ -6,12 +6,11 @@
     <div class="border-l-[3px] border-nightfall-800 dark:border-slate-300 px-2.5 mb-4">
         <div x-data="combobox({
                 options: [
-                    { value: '2023', label: '2023' },
-                    { value: '2024', label: '2024' },
-                    { value: '2025', label: '2025' },
-                    { value: '2026', label: '2026' },
+                    @foreach($years as $year)
+                        { value: '{{ $year }}', label: '{{ $year }}' },
+                    @endforeach
                 ],
-                defaultValue: '2025'
+                defaultValue: '{{ $selectedYear }}'
         })" class="w-full max-w-md flex flex-row gap-2 items-center" x-on:keydown="highlightFirstMatchingOption($event.key)" x-on:keydown.esc.window="isOpen = false, openedWithKeyboard = false">
             <label for="year_result" class="w-fit pl-0.5 text-sm text-slate-600 dark:text-slate-300 whitespace-nowrap font-medium">Lihat Berdasarkan Tahun</label>    
             <div class="relative w-auto">
@@ -25,7 +24,7 @@
                 </button>
 
                 <!-- hidden input -->
-                <input id="year_result" name="year_result" type="text" x-ref="hiddenTextField" hidden/>
+                <input id="year_result" name="year_result" type="text" x-ref="hiddenTextField" hidden wire:model.live="selectedYear"/>
                 <ul x-cloak x-show="isOpen || openedWithKeyboard" id="industriesList" class="absolute z-10 left-0 top-11 flex max-h-44 w-full flex-col overflow-hidden overflow-y-auto border-slate-300 bg-slate-50 py-1.5 dark:border-slate-700 dark:bg-slate-900 rounded-lg border shadow-lg" role="listbox" aria-label="industries list" x-on:click.outside="isOpen = false, openedWithKeyboard = false" x-on:keydown.down.prevent="$focus.wrap().next()" x-on:keydown.up.prevent="$focus.wrap().previous()" x-transition x-trap="openedWithKeyboard">
                     <template x-for="(item, index) in options" x-bind:key="item.value">   
                         <li class="combobox-option inline-flex justify-between gap-6 bg-slate-50 px-4 py-2 text-sm text-slate-800 hover:bg-slate-900/5 hover:text-slate-900 focus-visible:bg-slate-900/5 focus-visible:text-slate-900 focus-visible:outline-hidden dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-50/5 dark:hover:text-white dark:focus-visible:bg-slate-50/10 dark:focus-visible:text-white cursor-pointer" role="option" x-on:click="setSelectedOption(item)" x-on:keydown.enter="setSelectedOption(item)" x-bind:id="'option-' + index" tabindex="0">
@@ -57,6 +56,7 @@
                         this.isOpen = false;
                         this.openedWithKeyboard = false;
                         this.$refs.hiddenTextField.value = option.value;
+                        this.$refs.hiddenTextField.dispatchEvent(new Event('input', { bubbles: true }));
                     },
                     highlightFirstMatchingOption(pressedKey) {
                         const option = this.options.find((item) =>
@@ -92,7 +92,7 @@
                     {{ $item->nama_jenis_surat }}
                 </h1>
                 <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                    3
+                    {{ $item->surats_count }}
                 </p>
             </div>
             @endforeach

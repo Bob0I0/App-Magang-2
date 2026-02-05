@@ -9,7 +9,7 @@
         <form method="POST" action="{{ route('login.store') }}" class="flex flex-col gap-6">
             @csrf
 
-            <!-- Email Address -->
+            <!-- Username -->
             <flux:input
                 wire:model="username"
                 :label="__('Username')"

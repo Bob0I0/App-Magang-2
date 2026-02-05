@@ -61,7 +61,7 @@
                             />
                         @else
                             <span class="text-xs text-slate-400 italic">
-                                Akun aktif
+                                Akun sedang aktif
                             </span>
                         @endif
                         </flux:button.group>

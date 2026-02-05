@@ -79,7 +79,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="border border-slate-300 dark:border-slate-600 px-3 py-8 text-center text-slate-500">
+                    <td colspan="5" class="border border-slate-300 dark:border-slate-600 px-3 py-8 text-center text-slate-500">
                         Data tidak ditemukan.
                     </td>
                 </tr>

@@ -6,6 +6,7 @@ use App\Models\Surat;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 
 class Edit extends Component
@@ -14,8 +15,7 @@ class Edit extends Component
 
     public $surat_id;
 
-    #[Validate('required', message: 'Wajib Di Isi')]
-    #[Validate('unique:surats,nomor_surat', message: 'Nomor Surat sudah digunakan')]
+    #[Validate]
     public $nomor_surat;
 
     #[Validate('required', message: 'Wajib Di Isi')]
@@ -34,9 +34,6 @@ class Edit extends Component
     public $old_file; // Existing file path
     public $nama_asli_file;
 
-    // Use a unique key for the modal state to avoid conflicts if needed, 
-    // but looking at Users module, passing ID might be enough if handled correctly.
-    // However, for clean modal handling, we often listen to events.
     
     public function mount($id)
     {
@@ -52,7 +49,16 @@ class Edit extends Component
 
     public function updatesurat()
     {
-        $this->validate();
+        // Validate with unique rule ignoring current record
+        $this->validate([
+            'nomor_surat' => [
+                'required',
+                Rule::unique('surats', 'nomor_surat')->ignore($this->surat_id),
+            ],
+        ], [
+            'nomor_surat.required' => 'Wajib Di Isi',
+            'nomor_surat.unique' => 'Nomor Surat sudah digunakan',
+        ]);
 
         $surat = Surat::findOrFail($this->surat_id);
         

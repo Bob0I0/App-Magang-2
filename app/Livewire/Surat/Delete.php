@@ -28,7 +28,6 @@ class Delete extends Component
         $surat->delete();
 
         $this->dispatch('surat-deleted', 'surat-deleted');
-        // $this->dispatch('refresh-surat');
     }
 
     public function render()

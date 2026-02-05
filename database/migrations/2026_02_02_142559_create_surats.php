@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('surats', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_surat');
+            $table->string('nomor_surat')->unique();
             $table->foreignId('jenis_surat_id')
                 ->constrained('jenis_surats')
                 ->cascadeOnDelete();
             $table->date('tanggal');
             $table->string('perihal');
-            $table->string('file');
-            $table->string('nama_asli_file');
+            $table->string('file')->nullable();
+            $table->string('nama_asli_file')->nullable();
             $table->timestamps();
         });
 

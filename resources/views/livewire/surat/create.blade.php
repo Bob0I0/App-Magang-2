@@ -22,7 +22,7 @@
                         autofocus
                         :placeholder="__('Nomor Surat')"
                     />
-                    @error('nomor_surat') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    @error('nomor_surat')@enderror
                 </div>
 
                 <!-- Tanggal -->
@@ -32,7 +32,7 @@
                         :label="__('Tanggal')"
                         type="date"
                     />
-                    @error('tanggal') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    @error('tanggal')@enderror
                 </div>
 
                 <!-- Perihal -->
@@ -42,7 +42,7 @@
                         :label="__('Perihal')"
                         :placeholder="__('Perihal Surat')"
                     />
-                    @error('perihal') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    @error('perihal')@enderror
                 </div>
 
                 <!-- File -->
@@ -50,7 +50,7 @@
                     <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">File Surat (PDF/Image)</div>
                     <input type="file" wire:model="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                     <div wire:loading wire:target="file" class="text-sm text-blue-500 mt-1">Uploading...</div>
-                    @error('file') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    @error('file')@enderror
                 </div>
 
                 <!-- Confirmation -->

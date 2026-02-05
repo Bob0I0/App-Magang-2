@@ -23,6 +23,7 @@ class Create extends Component
     public $perihal;
 
     // #[Validate('required', message: 'Wajib Di Isi')]
+    #[Validate('nullable')]
     #[Validate('file', message: 'Harus berupa file')]
     #[Validate('mimes:pdf,jpg,jpeg,png', message: 'Format file harus PDF, JPG, JPEG, atau PNG')]
     #[Validate('max:10240', message: 'Ukuran file maksimal 10MB')]
@@ -38,9 +39,14 @@ class Create extends Component
     public function savesurat()
     {
         $this->validate();
-
-        $path = $this->file->store('surat-files', 'public');
-        $originalName = $this->file->getClientOriginalName();
+        if ($this->file) {
+            $path = $this->file->store('surat-files', 'public');
+            $originalName = $this->file->getClientOriginalName();
+        }
+        else {
+            $path = null;
+            $originalName = null;
+        }
 
         Surat::create([
             'jenis_surat_id' => $this->jenis_id,
@@ -55,7 +61,6 @@ class Create extends Component
         $this->resetValidation();
         
         $this->dispatch('surat-created','surat-created');
-        // $this->dispatch('refresh-surat'); 
     }
 
     public function resetForm()
