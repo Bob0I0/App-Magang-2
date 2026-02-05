@@ -1,21 +1,22 @@
-<div x-data="{ selected: null }" class="h-full flex flex-col">
+<div x-data="{ selectedId: null, selectedName: null }" class="h-full flex flex-col">
 
     <!-- HEADER -->
     <x-app-header :title="__('Portal Arsip Surat')">
         <x-slot:actions>
             <div
-                x-show="selected"
+                x-show="selectedId"
                 x-transition
                 class="flex items-center gap-3"
+                style="display: none;"
             >
-                <span class="text-sm text-slate-600">
-                    Pilihan: <strong x-text="selected"></strong>
+                <span class="text-sm text-slate-600 dark:text-slate-300">
+                    Pilihan: <strong x-text="selectedName"></strong>
                 </span>
 
                 <flux:button
                     type="button" variant="ghost"
-                    class="px-4 py-2 text-lime-500! rounded"
-                    {{-- icon:trailing="arrow-right"--}}
+                    class="px-4 py-2 text-lime-500! rounded cursor-pointer"
+                    x-on:click="window.location.href = '{{ route('surat.index') }}?jenis_id=' + selectedId"
                     >
                     Konfirmasi <flux:icon.arrow-right variant="mini" class="text-slate-900 dark:text-slate-200"/>
                 </flux:button>
@@ -24,17 +25,18 @@
     </x-app-header>    
 
     <!-- Container Kartu - transparan, tanpa background -->
-    <div class="flex-1 shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-4 lg:px-16 py-8">
+    <div class="flex-1 flex flex-col shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-4 lg:px-16 py-8">
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
 
             <!-- CARD BUTTON -->
+            @foreach($jenisSurats as $item)    
             <button
                 type="button"
-                @click="selected = selected === 'surat_keputusan' ? null : 'surat_keputusan'"
+                @click="selectedId = selectedId === '{{ $item->id }}' ? null : '{{ $item->id }}'; selectedName = selectedId ? '{{ $item->nama_jenis_surat }}' : null"
                 class="text-left focus:outline-none">
                 <div
-                    :class="selected === 'surat_keputusan' && 'ring-2 ring-blue-500'"
+                    :class="selectedId === '{{ $item->id }}' && 'ring-2 ring-blue-500'"
                     class="w-full min-h-30
                         rounded-lg border border-slate-300 dark:border-slate-600
                         bg-white dark:bg-nightfall-900
@@ -43,182 +45,18 @@
                         shadow-sm hover:shadow-md hover:shadow-blue-500/30
                         transition-shadow"
                 >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat Keputusan
+                    <h1 class="text-sm lg:text-xl font-semibold text-center text-zinc-600 dark:text-zinc-300">
+                        {{ $item->nama_jenis_surat }}
                     </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
                 </div>
             </button>
-            
-            <button
-                type="button"
-                @click="selected = selected === 'surat_perintah' ? null : 'surat_perintah'"
-                class="text-left focus:outline-none">
-                <div
-                    :class="selected === 'surat_perintah' && 'ring-2 ring-blue-500'"
-                    class="w-full min-h-30
-                        rounded-lg border border-slate-300 dark:border-slate-600
-                        bg-white dark:bg-nightfall-900
-                        flex flex-col items-center justify-center
-                        py-4 px-3
-                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
-                        transition-shadow"
-                >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat Perintah
-                    </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
-                </div>
-            </button>
-            
-            <button
-                type="button"
-                @click="selected = selected === 'surat_edaran' ? null : 'surat_edaran'"
-                class="text-left focus:outline-none">
-                <div
-                    :class="selected === 'surat_edaran' && 'ring-2 ring-blue-500'"
-                    class="w-full min-h-30
-                        rounded-lg border border-slate-300 dark:border-slate-600
-                        bg-white dark:bg-nightfall-900
-                        flex flex-col items-center justify-center
-                        py-4 px-3
-                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
-                        transition-shadow"
-                >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat Edaran
-                    </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
-                </div>
-            </button>
-            
-            <button
-                type="button"
-                @click="selected = selected === 'surat_pengumuman' ? null : 'surat_pengumuman'"
-                class="text-left focus:outline-none">
-                <div
-                    :class="selected === 'surat_pengumuman' && 'ring-2 ring-blue-500'"
-                    class="w-full min-h-30
-                        rounded-lg border border-slate-300 dark:border-slate-600
-                        bg-white dark:bg-nightfall-900
-                        flex flex-col items-center justify-center
-                        py-4 px-3
-                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
-                        transition-shadow"
-                >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat Pengumuman
-                    </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
-                </div>
-            </button>
-            
-            <button
-                type="button"
-                @click="selected = selected === 'surat_P3S' ? null : 'surat_P3S'"
-                class="text-left focus:outline-none">
-                <div
-                    :class="selected === 'surat_P3S' && 'ring-2 ring-blue-500'"
-                    class="w-full min-h-30
-                        rounded-lg border border-slate-300 dark:border-slate-600
-                        bg-white dark:bg-nightfall-900
-                        flex flex-col items-center justify-center
-                        py-4 px-3
-                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
-                        transition-shadow"
-                >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat P3S
-                    </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
-                </div>
-            </button>
-            
-            <button
-                type="button"
-                @click="selected = selected === 'surat_penugasan' ? null : 'surat_penugasan'"
-                class="text-left focus:outline-none">
-                <div
-                    :class="selected === 'surat_penugasan' && 'ring-2 ring-blue-500'"
-                    class="w-full min-h-30
-                        rounded-lg border border-slate-300 dark:border-slate-600
-                        bg-white dark:bg-nightfall-900
-                        flex flex-col items-center justify-center
-                        py-4 px-3
-                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
-                        transition-shadow"
-                >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat Penugasan
-                    </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
-                </div>
-            </button>
-            
-            <button
-                type="button"
-                @click="selected = selected === 'surat_keterangan' ? null : 'surat_keterangan'"
-                class="text-left focus:outline-none">
-                <div
-                    :class="selected === 'surat_keterangan' && 'ring-2 ring-blue-500'"
-                    class="w-full min-h-30
-                        rounded-lg border border-slate-300 dark:border-slate-600
-                        bg-white dark:bg-nightfall-900
-                        flex flex-col items-center justify-center
-                        py-4 px-3
-                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
-                        transition-shadow"
-                >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat Keterangan
-                    </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
-                </div>
-            </button>
-            
-            <button
-                type="button"
-                @click="selected = selected === 'surat_perjanjian' ? null : 'surat_perjanjian'"
-                class="text-left focus:outline-none">
-                <div
-                    :class="selected === 'surat_perjanjian' && 'ring-2 ring-blue-500'"
-                    class="w-full min-h-30
-                        rounded-lg border border-slate-300 dark:border-slate-600
-                        bg-white dark:bg-nightfall-900
-                        flex flex-col items-center justify-center
-                        py-4 px-3
-                        shadow-sm hover:shadow-md hover:shadow-blue-500/30
-                        transition-shadow"
-                >
-                    <h1 class="text-xs lg:text-sm font-semibold text-center text-zinc-600 dark:text-zinc-300">
-                        Surat Perjanjian
-                    </h1>
-                    <p class="text-2xl lg:text-3xl font-semibold text-center text-blue-600 dark:text-blue-400 mt-2">
-                        3
-                    </p>
-                </div>
-            </button>
+            @endforeach
 
         </div>
         
         <!-- Pagination Dots -->
-        <div class="mt-8 flex justify-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+        <div class="mt-auto">
+            {{ $jenisSurats->links('dot-pagination') }}
         </div> 
     </div>
 </div>

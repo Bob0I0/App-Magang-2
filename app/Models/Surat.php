@@ -8,6 +8,7 @@ class Surat extends Model
 {
     protected $fillable = [
         "nomor_surat",
+        'jenis_surat_id',
         "tanggal",
         "perihal",
         "file",

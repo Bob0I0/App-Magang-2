@@ -23,7 +23,9 @@
                     <flux:navlist variant="outline">
                         <flux:navlist.item href="{{ route('dashboard') }}">Beranda</flux:navlist.item>
                         <flux:navlist.item href="{{ route('modul') }}">Surat</flux:navlist.item>
+                        @if(auth()->user()->is_admin)
                         <flux:navlist.item href="{{ route('pengguna') }}">Kelola Pengguna</flux:navlist.item>
+                        @endif
                     </flux:navlist>
 
                     <flux:spacer />

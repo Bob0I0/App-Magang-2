@@ -18,10 +18,12 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Testing User',
             'username' => 'Tes',
+            'is_admin' => true,
         ]);
         User::factory()->create([
             'name' => 'Admin',
             'username' => 'Admin',
+            'is_admin' => true,
         ]);
     }
 }

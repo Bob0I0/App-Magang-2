@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="flex-1 shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-6 py-4">
+    <div class="flex-1 flex flex-col shadow-sm sm:rounded-lg border border-slate-600/20 dark:border-slate-100/20 px-6 py-4">
         
         <!-- Create Button -->
         <div x-data="{modalIsOpen: false}" class="pb-2">
@@ -79,7 +79,7 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="mt-5">
+        <div class="mt-auto">
             {{ $users->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
