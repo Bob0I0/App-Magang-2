@@ -8,7 +8,7 @@
             <!-- Header Banner -->
             <div class="h-[25vh] bg-[url('/public/images/Dashboard.jpg')] bg-no-repeat bg-center bg-cover shrink-0 z-20 relative">
                 <div class="absolute inset-0 bg-black/10"></div>
-                <div class="relative text-white p-6 h-full flex flex-col justify-end">
+                <div class="relative text-white p-6 h-full flex flex-col">
                     <h1 class="font-bold text-lg md:text-2xl leading-tight">Sistem Informasi</h1>
                     <h1 class="font-bold text-lg md:text-2xl leading-tight">Pengarsipan</h1>
                     <h1 class="font-bold text-lg md:text-2xl leading-tight">Surat</h1>
@@ -30,7 +30,7 @@
 
                     <flux:spacer />
 
-                    <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" />
+                    {{-- <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" /> --}}
 
                     <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
                 </flux:sidebar>

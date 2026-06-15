@@ -23,9 +23,10 @@ class Create extends Component
     public $perihal;
 
     // #[Validate('required', message: 'Wajib Di Isi')]
-    #[Validate('nullable')]
+    
     #[Validate('file', message: 'Harus berupa file')]
     #[Validate('mimes:pdf,jpg,jpeg,png', message: 'Format file harus PDF, JPG, JPEG, atau PNG')]
+    #[Validate('nullable')]
     #[Validate('max:10240', message: 'Ukuran file maksimal 10MB')]
     public $file;
 
