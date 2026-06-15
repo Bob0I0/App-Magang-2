@@ -103,5 +103,4 @@
             {{ $jenisSurats->links('dot-pagination') }}
         </div>
     </div>
-
 </div>
